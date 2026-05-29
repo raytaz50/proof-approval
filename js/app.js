@@ -138,6 +138,7 @@
     fd.append('Signed_Date', data.signed_date);
     fd.append('Submitted_At', data.submitted_at);
     fd.append('Designer', `${CFG.contact.email} · ${CFG.contact.phone}`);
+    fd.append('Proof_Link', window.location.href);
 
     const r = await fetch(ep, { method: 'POST', headers: { Accept: 'application/json' }, body: fd });
     if (!r.ok) {
