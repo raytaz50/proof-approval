@@ -43,11 +43,16 @@ window.PROOF_CONFIG = {
   },
 
   // --- Notification ---
-  notifyEmailSubject: "New Proof Approval — Jerry Thomas Foundation",
+  notifyEmailSubject: "Proof Approval — Jerry Thomas Foundation — 33 x 80 Retractable Banner",
 
   // --- Submission (Formspree) ---
   // Replace this with your real Formspree form endpoint before sending this proof link to a client.
   // It should look like: https://formspree.io/f/your-form-id
   // Leave the PASTE_ placeholder (or blank) to run in DEMO mode (no email is sent).
   formspreeEndpoint: "https://formspree.io/f/xdajjwpd",
+
+  // The permanent, correct live URL of THIS proof page (the full GitHub Pages
+  // project path, not the root domain). Included in the email so you can click
+  // straight to the real proof page. Update this if you rename/move the repo.
+  liveProofUrl: "https://raytaz50.github.io/proof-approval/",
 };

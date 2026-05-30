@@ -124,9 +124,11 @@
   async function send(data) {
     if (DEMO) { await new Promise(r => setTimeout(r, 650)); return; }
     // Email via Formspree
-    const subject = CFG.notifyEmailSubject || `Proof Approval — ${CFG.clientName} — ${CFG.projectName}`;
+    const subject = CFG.notifyEmailSubject || `Proof Approval — ${CFG.clientName} — ${CFG.designType}`;
+    const proofLink = CFG.liveProofUrl || window.location.href;
     const fd = new FormData();
-    fd.append('_subject', subject);
+    fd.append('_subject', subject);  // sets the actual email subject line
+    fd.append('subject', subject);   // also shown in the email body
     fd.append('Client', data.client);
     fd.append('Project', data.project);
     fd.append('Design_Type', data.design_type);
@@ -138,7 +140,8 @@
     fd.append('Signed_Date', data.signed_date);
     fd.append('Submitted_At', data.submitted_at);
     fd.append('Designer', `${CFG.contact.email} · ${CFG.contact.phone}`);
-    fd.append('Proof_Link', window.location.href);
+    fd.append('proof_link', proofLink);                       // correct permanent proof URL (from config)
+    fd.append('submitted_from_page', window.location.href);   // the actual page the client used
 
     const r = await fetch(ep, { method: 'POST', headers: { Accept: 'application/json' }, body: fd });
     if (!r.ok) {

@@ -60,7 +60,9 @@ The form emails you through Formspree (you already have an account).
 8. Confirm the approval email arrives in the target email inbox.
 9. If the email does not arrive, check the Formspree dashboard, your spam folder, and the target email settings. (Formspree may require you to confirm the form once via its first test email.)
 
-The email includes: client name, project name, design type, proof specs, selected layout, approval status, correction notes, signed name, signed date, submitted timestamp, and your designer contact info. The subject is auto-generated as `Proof Approval — [Client Name] — [Project Name]` (override with `notifyEmailSubject` in the config).
+The email includes: client name, project name, design type, proof specs, selected layout, approval status, correction notes, signed name, signed date, submitted timestamp, your designer contact info, a `proof_link` (the correct live page), and `submitted_from_page` (the URL the client actually used). The subject comes from `notifyEmailSubject` in the config (falls back to `Proof Approval — [Client] — [Design Type]`).
+
+> **Note on the email's "submitted on" link:** If the automatic Formspree email header links to the GitHub root and shows a 404, use the `proof_link` field inside the email instead. The correct client proof link is controlled in `js/proof-config.js` via `liveProofUrl`.
 
 ## How to know the form is live
 
